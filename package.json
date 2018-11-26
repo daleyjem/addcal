@@ -1,0 +1,19 @@
+{
+  "name": "addcal",
+  "version": "1.0.0",
+  "description": "This is a placeholder for the following...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daleyjem/addcal.git"
+  },
+  "author": "Jeremy Daley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daleyjem/addcal/issues"
+  },
+  "homepage": "https://github.com/daleyjem/addcal#readme"
+}
