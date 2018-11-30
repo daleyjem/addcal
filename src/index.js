@@ -3,7 +3,7 @@ import appConfig from './config';
 export default class AddCal {
     /**
      * Instantiate an AddCal object
-     * @param {*} config 
+     * @param {*} config Developer configuration options for each service utilized (i.e. google, yahoo, etc.)
      */
     constructor(config) {
         this.config = config;
@@ -14,7 +14,7 @@ export default class AddCal {
     }
 
     /**
-     * Inserts <script> tags into DOM
+     * Initializes all calendar service API's specified by the developer's config options
      */
     init() {
         for (const [service, serviceConfig] of Object.entries(this.config)){
