@@ -20,8 +20,9 @@ export default class AddCal {
         for (const [service, serviceConfig] of Object.entries(this.config)){
             const _class = new appConfig.services[service].class(serviceConfig);
             this.activeServices[service] = _class;
-            _class.onAPIReady = this.onServiceReady;
-            _class.init(this.onServiceReady.bind(this));
+            _class.onAPIReady = this.onServiceAPIReady.bind(this);
+            _class.onAPIFailed = this.onServiceAPIFailed.bind(this);
+            _class.init(this.onServiceAPIReady.bind(this));
         }
     }
 
@@ -40,10 +41,14 @@ export default class AddCal {
         return true;
     }
 
-    onServiceReady(service){
+    onServiceAPIReady(service){
         this.servicesReady.push(service);
         if (this.onServicesReadyUpdate){
             this.onServicesReadyUpdate();
         }
+    }
+
+    onServiceAPIFailed(service, err){
+        console.warn(`Couldn't initialize calendar API for '${service}'`, err);
     }
 }
