@@ -1,15 +1,12 @@
 import BaseCalendar from './base-calendar';
-import appConfig from '../../config';
 
 const SERVICE = 'google';
 
 export default class GoogleCalendar extends BaseCalendar {
     constructor(config){
-        super(SERVICE);
+        super(SERVICE, config);
 
         this.onAddedToDOM = this.onApiAdded;
-        this.config = config;
-        this.serviceConfig = appConfig.services[SERVICE];
     }
 
     async addEvent(params){
