@@ -9,6 +9,11 @@ export default class GoogleCalendar extends BaseCalendar {
         this.onAddedToDOM = this.onApiAdded;
     }
 
+    /**
+     * Adds an event to the user's Google calendar
+     * @param {*} params Event params to add
+     * @todo Actually implement the `gapi` calendar `insert` method
+     */
     async addEvent(params){
         const signedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
         if (!signedIn){
