@@ -29,7 +29,7 @@ export default class AddCal {
     /**
      * Add an event to the specified API service
      * @param {string} service The service to add the event to ('google', 'yahoo', etc.)
-     * @param {*} eventParams 
+     * @param {*} eventParams The data to add to the user's calendar service
      */
     async addEvent(service, eventParams) {
         const instance = this.activeServices[service];
