@@ -1,6 +1,4 @@
-# WIP: Provide package that allows adding of calendar events via multiple API's
-
-## Description
+# AddCal
 
 Open-source web application utility for adding calendar events via certain platform API's (Google, etc.)
 
