@@ -41,6 +41,10 @@ export default class AddCal {
         return true;
     }
 
+    /**
+     * @private
+     * @param {string} service The service who's API is ready to interact with (i.e. 'google', 'yahoo', etc.)
+     */
     onServiceAPIReady(service){
         this.servicesReady.push(service);
         if (this.onServicesReadyUpdate){
@@ -48,6 +52,10 @@ export default class AddCal {
         }
     }
 
+    /**
+     * @private
+     * @param {string} service The service who's API failed readiness to interact with (i.e. 'google', 'yahoo', etc.)
+     */
     onServiceAPIFailed(service, err){
         console.warn(`Couldn't initialize calendar API for '${service}'`, err);
     }

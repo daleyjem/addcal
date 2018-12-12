@@ -1,4 +1,5 @@
 import BaseCalendar from './base-calendar';
+import transformGoogleEvent from '../transformers/google';
 
 const SERVICE = 'google';
 
@@ -16,6 +17,8 @@ export default class GoogleCalendar extends BaseCalendar {
      */
     async addEvent(params){
         const signedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
+        const eventConfig = transformGoogleEvent(params);
+
         if (!signedIn){
             await gapi.auth2.getAuthInstance().signIn()
                 .catch((err) => {
@@ -23,7 +26,17 @@ export default class GoogleCalendar extends BaseCalendar {
                 })
             ;
         }
-        return true;
+
+        return new Promise((resolve, reject) => {
+            const request = gapi.client.calendar.events.insert(eventConfig);
+            request.execute((res) => {
+                if (res.status === 'confirmed') {
+                    resolve(res.status);
+                } else {
+                    reject(res.status);
+                }
+            });
+        });
     }
 
     onApiAdded(){
