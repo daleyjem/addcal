@@ -18,25 +18,25 @@ import AddCal from 'addcal';
 export class AppComponent {
   private addCal:AddCal;
 
-	public constructor(){
-		this.addCal = new AddCal({
-			google: {
-				apiKey: '<YOUR_API_KEY>',
-				clientKey: '<YOUR_CLIENT_ID>'
-			}
-		});
-	}
+  public constructor(){
+    this.addCal = new AddCal({
+      google: {
+        apiKey: '<YOUR_API_KEY>',
+        clientKey: '<YOUR_CLIENT_ID>'
+      }
+    });
+  }
 
-	public click_addEvent(eventData){
-		this.addCal.addEvent('google', eventData)
-			.then(() => {
-				console.log('The reminder was added!');
-			})
-			.catch((err) => {
-				console.log('There was a problem adding the reminder');
-			})
-		;
-	}
+  public click_addEvent(eventData){
+    this.addCal.addEvent('google', eventData)
+      .then(() => {
+        console.log('The reminder was added!');
+      })
+      .catch((err) => {
+        console.log('There was a problem adding the reminder');
+      })
+    ;
+  }
 }
 
 ```
