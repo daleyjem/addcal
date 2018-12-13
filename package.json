@@ -1,6 +1,6 @@
 {
   "name": "addcal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Open-source web application utility for adding calendar events via certain platform API's (Google, etc.)",
   "main": "src/index.js",
   "scripts": {
