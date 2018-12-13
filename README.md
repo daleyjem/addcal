@@ -16,7 +16,7 @@ Open-source web application utility for adding calendar events via certain platf
 import AddCal from 'addcal';
 
 export class AppComponent {
-	private addCal:AddCal;
+  private addCal:AddCal;
 
 	public constructor(){
 		this.addCal = new AddCal({
