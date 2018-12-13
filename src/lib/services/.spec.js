@@ -4,7 +4,7 @@ const util = require('util')
 
 const baseInterfaceMethods = [
     'onApiInit',
-    'onApiReady'
+    'onApiAdded'
 ]
 
 test('Should not contain files besides the base calendar', async () => {
@@ -14,25 +14,20 @@ test('Should not contain files besides the base calendar', async () => {
     expect(pass).toBeTruthy()
 })
 
-test('Services should contain interfaces:\n' + baseInterfaceMethods.join('\n'), async () => {
+test('Service platforms should contain interface methods:\n\t- ' + baseInterfaceMethods.join('\n\t- '), async () => {
     const files = await glob([__dirname + '/platforms/*.js'])
     let pass = true
-    const disqualifiers = []
+
     for (const file of files) {
-        console.log(file)
-        const service = require(file)
-        console.log(util.inspect(service.default.toString()))
-        // console.log('Dude', _service)
+        const service = require(file).default
+        const _service = new service({})
         
-        // console.log('Service:', service)
-        // for (const method of baseInterfaceMethods) {
-        //     if (!service.hasOwnProperty(method)){
-        //         pass = false
-        //         if (!disqualifiers.includes(service)){
-        //             disqualifiers.push(service)
-        //         }
-        //     }
-        // }
+        for (const method of baseInterfaceMethods) {
+            if (typeof _service[method] !== 'function'){
+                pass = false
+                console.error(files, 'doesnt have method:', method)
+            }
+        }
     }
     expect(pass).toBeTruthy()
 })
