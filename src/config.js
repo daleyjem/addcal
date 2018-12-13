@@ -1,4 +1,4 @@
-import GoogleCalendar from "./lib/services/google";
+import GoogleCalendar from "./lib/services/platforms/google";
 
 export default {
     services: {

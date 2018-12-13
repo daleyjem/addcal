@@ -4,7 +4,7 @@
   "description": "Open-source web application utility for adding calendar events via certain platform API's (Google, etc.)",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/daleyjem/addcal/issues"
   },
-  "homepage": "https://github.com/daleyjem/addcal#readme"
+  "homepage": "https://github.com/daleyjem/addcal#readme",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "globby": "^8.0.1",
+    "jest": "^23.6.0"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
+  }
 }

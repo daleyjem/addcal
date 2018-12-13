@@ -1,5 +1,5 @@
-import BaseCalendar from './base-calendar';
-import transformGoogleEvent from '../transformers/google';
+import BaseCalendar from '../base-calendar';
+import transformGoogleEvent from '../../transformers/google';
 
 const SERVICE = 'google';
 
