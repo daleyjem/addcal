@@ -1,4 +1,4 @@
-# AddCal
+# AddCal [![Build Status](https://travis-ci.org/daleyjem/addcal.svg?branch=master)](https://travis-ci.org/daleyjem/addcal)
 
 Open-source web application utility for adding calendar events via certain platform API's (Google, etc.)
 
