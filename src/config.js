@@ -1,5 +1,5 @@
 import GoogleCalendar from './lib/services/platforms/google';
-import ICalTransformer from './lib/transformers/types/ical';
+import ICalTransformer from './lib/transformers/ical';
 
 export default {
     services: {
