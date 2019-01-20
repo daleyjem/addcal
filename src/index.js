@@ -30,7 +30,7 @@ export default class AddCal {
     /**
      * Add an event to the specified API service
      * @param {string} service The service to add the event to ('google', 'yahoo', etc.)
-     * @param {*} eventParams The data to add to the user's calendar service
+     * @param {EventParms} eventParams The data to add to the user's calendar service
      */
     async addEvent(service, eventParams) {
         const instance = this.activeServices[service];
@@ -45,7 +45,7 @@ export default class AddCal {
     /**
      * Forces the browser to download a calendar event of type specified by `generator` param
      * @param {string} generator The generator to use for creating the file to download
-     * @param {*} eventParams The data to add to the event file
+     * @param {EventParams} eventParams The data to add to the event file
      * @param {*} options Options for download
      * @param {string} options.filename Filename of file being downloaded
      */
@@ -80,3 +80,5 @@ export default class AddCal {
         console.warn(`Couldn't initialize calendar API for '${service}'`, err);
     }
 }
+
+export {default as EventParams} from './lib/models/event-params';
