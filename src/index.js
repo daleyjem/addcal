@@ -1,4 +1,5 @@
 import appConfig from './config';
+import download from './lib/utils/downloader';
 
 export default class AddCal {
     /**
@@ -39,6 +40,25 @@ export default class AddCal {
             })
         ;
         return true;
+    }
+
+    /**
+     * Forces the browser to download a calendar event of type specified by `generator` param
+     * @param {string} generator The generator to use for creating the file to download
+     * @param {*} eventParams The data to add to the event file
+     * @param {*} options Options for download
+     * @param {string} options.filename Filename of file being downloaded
+     */
+    static download(generator, eventParams, options = {}) {
+        const _generator = appConfig.generators[generator];
+        const transformer = _generator.transformer;
+        const fileData = transformer(eventParams);
+        
+        download(fileData, {
+            filename: `${options.filename || 'event'}.${_generator.extension}`,
+            charset: _generator.charset,
+            mimetype: _generator.mimetype
+        });
     }
 
     /**
