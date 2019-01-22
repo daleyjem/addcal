@@ -1,21 +1,17 @@
-import appConfig from '../../config';
-
 /**
  * @typedef Calendar
  */
  export default class Calendar {
     /**
      * Base calendar object to extend from for calendar service API's (i.e. google, yahoo, etc.)
-     * @param {string} service Name of the service that matches key in root `config.js`
-     * @param {object} config Developer configuration options for the service API 
+     * @param {object} serviceConfig App configuration options for service
+     * @param {object} apiConfig Developer configuration options for the service API 
      */
-    constructor(service, config){
+    constructor(serviceConfig, apiConfig){
+        // App config options for service
+        this.serviceConfig = serviceConfig;
         // Dev API config options (API_KEY, etc.)
-        this.config = config;
-        // Name of service (google, yahoo, etc.)
-        this.service = service;
-        // App config options
-        this.serviceConfig = appConfig.services[this.service];
+        this.apiConfig = apiConfig;
 
         /**
          * Event listeners
@@ -38,7 +34,7 @@ import appConfig from '../../config';
         script.onload = () => {
             if (this.onAddedToDOM) this.onAddedToDOM()
         }
-        script.src = appConfig.services[this.service].src;
+        script.src = this.serviceConfig.src;
         head.appendChild(script);
     }
 }

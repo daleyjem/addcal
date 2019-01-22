@@ -12,7 +12,7 @@ export default (data, options = {}) => {
     options.mimetype = options.mimetype || 'text/plain';
 
     const element = document.createElement('a');
-    element.setAttribute('href', `data:${options.mimetype};charset=${optoins.charset},` + encodeURIComponent(data));
+    element.setAttribute('href', `data:${options.mimetype};charset=${options.charset},` + encodeURIComponent(data));
     element.setAttribute('download', options.filename);
 
     element.style.display = 'none';

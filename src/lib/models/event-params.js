@@ -3,6 +3,6 @@ export default class EventParams {
         this.summary = params.summary || '';
         this.description = params.description || '';
         this.start = params.start || new Date();
-        this.end = params.end || new Date();
+        this.duration = params.end || {hours: 1, minutes: 0};
     }
 }

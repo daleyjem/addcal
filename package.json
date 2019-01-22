@@ -26,6 +26,6 @@
     "babel-core": "7.0.0-bridge.0"
   },
   "dependencies": {
-    "ical-generator": "^1.4.4"
+    "ics-browser-es": "https://github.com/daleyjem/ics.git"
   }
 }

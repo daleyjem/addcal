@@ -4,9 +4,12 @@ import transformGoogleEvent from '../../transformers/google';
 const SERVICE = 'google';
 
 export default class GoogleCalendar extends BaseCalendar {
-    constructor(config){
-        super(SERVICE, config);
+    constructor(serviceConfig, apiConfig){
+        super(serviceConfig, apiConfig);
 
+        this.serviceConfig = serviceConfig;
+        this.apiConfig = apiConfig;
+        this.service = SERVICE;
         this.onAddedToDOM = this.onApiAdded;
     }
 
@@ -45,8 +48,8 @@ export default class GoogleCalendar extends BaseCalendar {
 
     onApiInit(){
         gapi.client.init({
-            apiKey: this.config.apiKey,
-            clientId: this.config.clientKey,
+            apiKey: this.apiConfig.apiKey,
+            clientId: this.apiConfig.clientKey,
             discoveryDocs: this.serviceConfig.options.discoveryDocs,
             scope: this.serviceConfig.options.scopes
         }).then(() => {

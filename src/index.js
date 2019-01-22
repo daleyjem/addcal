@@ -6,8 +6,8 @@ export default class AddCal {
      * Instantiate an AddCal object
      * @param {*} config Developer configuration options for each service utilized (i.e. google, yahoo, etc.)
      */
-    constructor(config) {
-        this.config = config;
+    constructor(apiConfig) {
+        this.apiConfig = apiConfig;
         this.activeServices = {};
         this.servicesReady = [];
         this.onServicesReadyUpdate;
@@ -18,12 +18,13 @@ export default class AddCal {
      * Initializes all calendar service API's specified by the developer's config options
      */
     init() {
-        for (const [service, serviceConfig] of Object.entries(this.config)){
-            const _class = new appConfig.services[service].class(serviceConfig);
-            this.activeServices[service] = _class;
+        for (const [service, apiConfig] of Object.entries(this.apiConfig)){
+            const serviceConfig = appConfig.services[service];
+            const _class = new serviceConfig.class(serviceConfig, apiConfig);
             _class.onAPIReady = this.onServiceAPIReady.bind(this);
             _class.onAPIFailed = this.onServiceAPIFailed.bind(this);
             _class.init(this.onServiceAPIReady.bind(this));
+            this.activeServices[service] = _class;
         }
     }
 
@@ -82,3 +83,6 @@ export default class AddCal {
 }
 
 export {default as EventParams} from './lib/models/event-params';
+export const generators = {
+    ICALENDAR: 'ical'
+};
