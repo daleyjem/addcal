@@ -12,8 +12,10 @@ Open-source web application utility for adding calendar events via certain platf
 
 ## Implementation Example
 
+An example for Typescript...
+
 ```js
-import AddCal from 'addcal';
+import AddCal, {EventParams, generators} from 'addcal';
 
 export class AppComponent {
   private addCal:AddCal;
@@ -27,8 +29,19 @@ export class AppComponent {
     });
   }
 
-  public click_addEvent(eventData){
-    this.addCal.addEvent('google', eventData)
+  /**
+   * Add event to an api service (google, etc.)
+   */
+  public click_addEvent(eventData, service /* 'google' */){
+    const params = new EventParams({
+    	summary: eventData.summary, // 'Event Summary'
+		description: eventData.description, // 'Event description.'
+		start: eventData.start, // new Date()
+		duration: eventDate.duration, // 60 minutes
+		url: eventData.url // 'http://www.google.com'
+    });
+  
+    this.addCal.addEvent(service, params)
       .then(() => {
         console.log('The reminder was added!');
       })
@@ -36,6 +49,21 @@ export class AppComponent {
         console.log('There was a problem adding the reminder');
       })
     ;
+  }
+  
+  /**
+   * Download an .ics file
+   */
+  public click_downloadEvent(eventData, type /* 'ical' */){
+    const params = new EventParams({
+    	summary: eventData.summary, // 'Event Summary'
+		description: eventData.description, // 'Event description.'
+		start: eventData.start, // new Date()
+		duration: eventDate.duration, // 60 minutes
+		url: eventData.url // 'http://www.google.com'
+    });
+  
+    this.addCal.download(type, params); // Or use `generators.ICALENDAR` for 'type' param
   }
 }
 

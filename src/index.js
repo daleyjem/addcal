@@ -83,6 +83,7 @@ export default class AddCal {
 }
 
 export {default as EventParams} from './lib/models/event-params';
+
 export const generators = {
     ICALENDAR: 'ical'
 };

@@ -15,7 +15,7 @@ export default class GoogleCalendar extends BaseCalendar {
 
     /**
      * Adds an event to the user's Google calendar
-     * @param {*} params Event params to add
+     * @param {EventParams} params Event params to add
      * @todo Actually implement the `gapi` calendar `insert` method
      */
     async addEvent(params){
