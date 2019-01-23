@@ -6,13 +6,13 @@ import { createEvent } from 'ics-browser-es';
  */
 export default (eventParams) => {
     const _dur = eventParams.duration / 60;
-    const durHours = Math.floor(_dur / 60);
+    const durHours = Math.floor(_dur);
     const durMinutes = (_dur - durHours) * 60;
 
     const eventData = {
         start: [
             eventParams.start.getFullYear(),
-            eventParams.start.getMonth(),
+            eventParams.start.getMonth() + 1,
             eventParams.start.getDate(),
             eventParams.start.getHours(),
             eventParams.start.getMinutes()

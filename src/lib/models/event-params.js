@@ -14,5 +14,6 @@ export default class EventParams {
         this.start = params.start || new Date();
         this.duration = params.duration || 60;
         this.url = params.url || '';
+        this.location = params.location || '';
     }
 }
