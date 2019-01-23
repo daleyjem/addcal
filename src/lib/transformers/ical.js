@@ -1,15 +1,29 @@
 import { createEvent } from 'ics-browser-es';
 
+/**
+ * @param {EventParams} eventParams An EventParams object with event data
+ * @return {string} ics file data
+ */
 export default (eventParams) => {
+    const _dur = eventParams.duration / 60;
+    const durHours = Math.floor(_dur / 60);
+    const durMinutes = (_dur - durHours) * 60;
+
     const eventData = {
-        start: [2018, 5, 30, 6, 30],
-        duration: { hours: 6, minutes: 30 },
-        title: 'Bolder Boulder',
-        description: 'Annual 10-kilometer run in Boulder, Colorado',
-        location: 'Folsom Field, University of Colorado (finish line)',
-        url: 'http://www.bolderboulder.com/',
-        geo: { lat: 40.0095, lon: 105.2669 },
-        status: 'CONFIRMED'
+        start: [
+            eventParams.start.getFullYear(),
+            eventParams.start.getMonth(),
+            eventParams.start.getDate(),
+            eventParams.start.getHours(),
+            eventParams.start.getMinutes()
+        ],
+        duration: { hours: durHours, minutes: durMinutes },
+        title: eventParams.summary,
+        description: eventParams.description,
+        location: eventParams.location,
+        url: eventParams.url,
+        // geo: { lat: 40.0095, lon: 105.2669 },
+        // status: 'CONFIRMED'
     }
     
     return createEvent(eventData, (err, val) => {

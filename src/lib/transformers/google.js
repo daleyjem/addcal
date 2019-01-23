@@ -1,24 +1,38 @@
-export default (eventConfig) => {
+/**
+ * @param {EventParams} eventParams The EventParams object to transform
+ */
+export default (eventParams) => {
+    eventParams.extra = eventParams.extra || {};
+
+    const _dur = eventParams.duration / 60;
+    const durHours = Math.floor(_dur / 60);
+    const durMinutes = (_dur - durHours) * 60;
+    
+    let endDate = eventParams.start;
+    endDate.setHours(endDate.getHours() + durHours);
+    endDate.setMinutes(endDate.getMinutes() + durMinutes);
+
     const config = {
-        calendarId: eventConfig.calendarId || 'primary',
-        summary: eventConfig.title,
-        description: eventConfig.description,
+        calendarId: eventParams.extra.calendarId || 'primary',
+        summary: eventParams.summary,
+        description: eventParams.description,
         start: {
-            dateTime: eventConfig.start
+            dateTime: eventParams.start
         },
         end: {
-            dateTime: eventConfig.end
+            dateTime: endDate
         },
         reminders: {
-            useDefault: eventConfig.reminders === undefined
-        }
+            useDefault: eventParams.reminders === undefined
+        },
+        url: eventParams.url
     };
 
-    if (eventConfig.recurrence) {
-        config.recurrence = generateRecurrence(eventConfig.recurrence);
+    if (eventParams.recurrence) {
+        config.recurrence = generateRecurrence(eventParams.recurrence);
     }
 
-    if (eventConfig.reminders) {
+    if (eventParams.reminders) {
         config.reminders.useDefault = false;
         /**
          * @todo Add reminders generation logic
