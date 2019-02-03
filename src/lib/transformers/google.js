@@ -8,7 +8,7 @@ export default (eventParams) => {
     const durHours = Math.floor(_dur / 60);
     const durMinutes = (_dur - durHours) * 60;
     
-    let endDate = eventParams.start;
+    let endDate = new Date(eventParams.start.getTime());
     endDate.setHours(endDate.getHours() + durHours);
     endDate.setMinutes(endDate.getMinutes() + durMinutes);
 
